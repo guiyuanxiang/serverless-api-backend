@@ -1,0 +1,19 @@
+{
+  "name": "lambda-dbevent",
+  "version": "1.0.0",
+  "author": "Brian Murray <brmur@amazon.com>, Alex Forsyth <alex-git@amazon.com>, Corey Pyle<corepyle@amazon.com",
+  "license": "Apache 2.0",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run **/*.unit.test.js"
+  },
+  "main": "dbevent.js",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.408.0",
+    "@aws-sdk/client-ec2": "^3.409.0",
+    "@aws-sdk/client-iam": "^3.409.0",
+    "@aws-sdk/client-ssm": "^3.409.0",
+    "ramda": "^0.29.0",
+    "uuid": "^9.0.0"
+  }
+}

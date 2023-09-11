@@ -1,0 +1,33 @@
+{
+    "name": "lambda-api-backend-cdk",
+    "version": "0.0.1",
+    "bin": {
+        "cdk": "bin/cdk.js"
+    },
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc -w",
+        "test": "jest",
+        "cdk": "cdk"
+    },
+    "devDependencies": {
+        "@types/jest": "^29.5.0",
+        "@types/node": "^18.15.0",
+        "aws-cdk": "^2.95.0",
+        "aws-cdk-lib": "^2.95.0",
+        "constructs": "^10.1.290",
+        "esbuild": "*",
+        "jest": "^29.5.0",
+        "ts-jest": "^29.1.0",
+        "ts-node": "^10.9.0",
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "@aws-sdk/client-dynamodb": "^3.408.0",
+        "@aws-sdk/client-lambda": "^3.408.0",
+        "@types/jest": "^29.5.0",
+        "@types/node": "^18.15.0",
+        "aws-cdk-lib": "^2.95.0",
+        "constructs": "^10.1.290"
+    }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "lambda-crud-dynamodb",
+  "version": "1.0.0",
+  "description": "Lambdas to do CRUD operations on DynamoDB",
+  "main": "create.js",
+  "private": true,
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/node": "*",
+    "@types/uuid": "*"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.408.0",
+    "nanoid": "^3.3.5"
+  }
+}
