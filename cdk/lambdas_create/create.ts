@@ -21,8 +21,8 @@ export const handler = async (event: any = {}): Promise<any> => {
         TableName: tableName,
         Item: {
             id: { S: item['id'] }, // 替换为唯一的主键值
-            input: { S: item['input'] }, // 插入 input 字段数据
-            filename: { S: item['filename'] },
+            input_text: { S: item['input_text'] }, // 插入 input 字段数据
+            input_file_path: { S: item['input_file_path'] },
         }
     };
     const command = new PutItemCommand(params);

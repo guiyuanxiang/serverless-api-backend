@@ -26,11 +26,10 @@ export const handler = async (event) => {
             if (record.eventName === 'INSERT') {
                 // 获取新插入的数据
                 const newItem = record.dynamodb.NewImage;
-                const id = newItem['id'];
+                const id = newItem.id.S;
                 // 在这里使用 newItem 进行操作，例如打印到日志
                 console.log('New item:', JSON.stringify(newItem, null, 2));
                 console.log(id);
-
                 const bucketName = process.env.BUCKET_NAME;
                 const attrn = process.env.ATTRN;
                 const tableName = process.env.SAMPLE_TABLE;
