@@ -34,7 +34,7 @@ export const handler = async (event) => {
                 const bucketName = process.env.BUCKET_NAME;
                 const attrn = process.env.ATTRN;
                 const tableName = process.env.SAMPLE_TABLE;
-
+                const securityGroupName = process.env.GROUP_NAME;
 
                 const region = 'us-east-1';
                 try {

@@ -70,7 +70,7 @@ export const getAmznLinux2AMIs = async () => {
     // console.log(imageDetails);
     const returnImageDetails = [];
     for (const image of imageDetails) {
-        if (image['ImageId'] === 'ami-0f409bae3775dc8e5') {
+        if (image['Architecture'] === 'x86_64') {
             returnImageDetails.push(image);
         }
     }

@@ -36,7 +36,7 @@ export class ChallengeStack extends Stack {
         //arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess
         role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonDynamoDBFullAccess'));
         // arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM
-        role.addManagedPolicy(iam.ManagedPolicy.fromManagedPolicyArn(this,'AmazonEC2RoleforSSMPolicy','arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM'));
+        role.addManagedPolicy(iam.ManagedPolicy.fromManagedPolicyArn(this, 'AmazonEC2RoleforSSMPolicy', 'arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM'));
 
 
         // 创建实例配置文件并将角色与实例配置文件关联
@@ -47,11 +47,13 @@ export class ChallengeStack extends Stack {
         const attrn = instanceProfile.attrArn;
 
         // 创建一个 VPC（Virtual Private Cloud）
-        const vpc = new ec2.Vpc(this, 'MyVpc', {
-            maxAzs: 2, // 设置最大可用区数
+        // 创建默认 VPC
+        const vpc = ec2.Vpc.fromLookup(this, 'DefaultVpc', {
+            isDefault: true,
         });
 
-        const securityGroupName = "code-challenge-group";
+
+        const securityGroupName = "code-challenge-group-new";
         // 创建一个 EC2 安全组
         const securityGroup = new ec2.SecurityGroup(this, 'MySecurityGroup', {
             vpc,
@@ -65,14 +67,14 @@ export class ChallengeStack extends Stack {
 
 
         const bucketId = 'MyS3Bucket';
-        const bucketName = 'codehallengeganbdadei';
+        const bucketName = 'codechallengeganbdadei';
         const bucket = new s3.Bucket(this, bucketId, {
             versioned: true,
             removalPolicy: cdk.RemovalPolicy.DESTROY,
             bucketName: bucketName,
             cors: [{
                 allowedHeaders: ['*'], // 允许所有头部字段
-                allowedMethods: [s3.HttpMethods.GET, s3.HttpMethods.POST, s3.HttpMethods.PUT], // 允许的 HTTP 方法
+                allowedMethods: [s3.HttpMethods.GET, s3.HttpMethods.POST, s3.HttpMethods.PUT, s3.HttpMethods.HEAD, s3.HttpMethods.DELETE], // 允许的 HTTP 方法
                 allowedOrigins: ['*'], // 允许的来源
                 // exposedHeaders: ['*'], // 公开的头部字段
             }],
@@ -126,6 +128,7 @@ export class ChallengeStack extends Stack {
                 REACT_APP_ACCESSKEYID: accesskeyId.valueAsString,
                 REACT_APP_SECRETACCESSKEY: secretAccessKey.valueAsString,
                 BUCKET_NAME: bucketName,
+                GROUP_NAME: securityGroupName,
                 ATTRN: attrn
             },
             timeout: Duration.seconds(600)
